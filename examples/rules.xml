@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Пользовательские правила. Подгружаются в работающем приложении, пересборка не нужна. -->
+<Rules>
+
+  <Rule id="CUSTOM-001" title="Захардкоженный внутренний адрес"
+        severity="Medium" risk="5" regex="true" ignoreCase="true" deepScanOnly="false">
+    <Pattern>https?://(10|192\.168|172\.(1[6-9]|2[0-9]|3[01]))\.[0-9.]+</Pattern>
+  </Rule>
+
+  <Rule id="CUSTOM-002" title="Отключена проверка TLS-сертификата"
+        severity="High" risk="8" regex="true" ignoreCase="true" deepScanOnly="false">
+    <Pattern>(TrustServerCertificate\s*=\s*true|ServerCertificateValidationCallback\s*\+?=)</Pattern>
+  </Rule>
+
+  <Rule id="CUSTOM-003" title="Небезопасная десериализация"
+        severity="High" risk="8" regex="true" ignoreCase="true" deepScanOnly="false">
+    <Pattern>(BinaryFormatter|NetDataContractSerializer|LosFormatter)</Pattern>
+  </Rule>
+
+  <Rule id="CUSTOM-004" title="Вызов нативной библиотеки без полного пути"
+        severity="Medium" risk="6" regex="true" ignoreCase="true" deepScanOnly="true">
+    <Pattern>DllImport\("[A-Za-z0-9_]+\.dll"</Pattern>
+  </Rule>
+
+</Rules>
